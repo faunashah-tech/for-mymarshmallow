@@ -12,7 +12,7 @@
         h1 { color: #ff4d6d; font-size: 22px; line-height: 1.4; }
         .buttons { display: flex; flex-direction: column; align-items: center; gap: 15px; margin-top: 20px; }
         button { border: none; border-radius: 10px; cursor: pointer; font-weight: bold; transition: all 0.3s ease; }
-        #yesBtn { background-color: #28a745; color: white; padding: 15px 30px; font-size: 20px; }
+        #yesBtn { background-color: #28a745; color: white; padding: 15px 30px; font-size: 20px; position: relative; z-index: 100; }
         #noBtn { background-color: #dc3545; color: white; padding: 10px 20px; font-size: 16px; }
         .hidden { display: none; }
     </style>
@@ -21,9 +21,9 @@
 
     <div id="ask-section" class="container">
         <div class="gif-container">
-            <img id="main-gif" src="image1.gif" alt="[Loading image1.gif...]">
+            <img id="main-gif" src="image1.gif" alt="please">
         </div>
-        <h1 id="questionText">Will you be my Valentine, <br>Mr. Takshil Ronak Shah? 🌹</h1>
+        <h1>Will you go on a date with me, <br>Mr. Takshil Ronak Shah? 🌹</h1>
         <div class="buttons">
             <button id="yesBtn">Yes</button>
             <button id="noBtn">No</button>
@@ -32,7 +32,7 @@
 
     <div id="success-section" class="container hidden">
         <div class="gif-container">
-            <img src="image4.gif" alt="[Loading image4.gif...]" style="width:220px; border-radius:10px;">
+            <img src="image4.gif" alt="success" style="width:220px; border-radius:10px;">
         </div>
         <h1>Yay! It's a date, <br>Mr. Takshil Ronak Shah! 💖</h1>
     </div>
@@ -48,24 +48,26 @@
             "No", "Are you sure?", "Plese look at my eyes...", 
             "I'm gonna cry...", "You're breaking my heart!", 
             "Takshil, please don't be mean!", "Look at the sad penguin!!", 
-            "I'm drowning in tears!", "JUST CLICK YES!", "Last chance!"
+            "I'm drowning in tears!", "JUST CLICK YES!", "Don't do this to me!"
         ];
 
         let clickCount = 0;
 
         noBtn.addEventListener('click', () => {
             clickCount++;
+            
+            // 1. Update No button text
             if (clickCount < cheesyMessages.length) {
                 noBtn.innerText = cheesyMessages[clickCount];
             } else {
                 noBtn.style.display = 'none';
             }
 
-            // Change images based on clicks
-            if (clickCount === 3) mainGif.src = "image2.gif"; 
-            if (clickCount === 6) mainGif.src = "image3.png"; 
+            // 2. Change Images based on your uploaded files
+            if (clickCount === 3) mainGif.src = "image2.gif"; // Sad penguin
+            if (clickCount === 6) mainGif.src = "image3.png"; // Crying cat
 
-            // Yes button growth
+            // 3. Make Yes button grow
             const currentSize = parseFloat(window.getComputedStyle(yesBtn).fontSize);
             yesBtn.style.fontSize = (currentSize + 15) + 'px';
             yesBtn.style.padding = (parseFloat(window.getComputedStyle(yesBtn).paddingTop) + 10) + 'px ' + 
