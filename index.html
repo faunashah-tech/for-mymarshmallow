@@ -7,11 +7,12 @@
     <style>
         body { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; margin: 0; background-color: #fff0f3; font-family: 'Arial', sans-serif; text-align: center; overflow: hidden; }
         .container { background: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); width: 90%; max-width: 450px; }
-        #main-gif { width: 220px; height: 220px; object-fit: contain; margin-bottom: 20px; border-radius: 10px; display: block; margin-left: auto; margin-right: auto; }
-        h1 { color: #ff4d6d; font-size: 22px; line-height: 1.4; min-height: 60px; }
+        .gif-container { min-height: 220px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; }
+        #main-gif { width: 220px; height: 220px; object-fit: contain; border-radius: 10px; }
+        h1 { color: #ff4d6d; font-size: 22px; line-height: 1.4; }
         .buttons { display: flex; flex-direction: column; align-items: center; gap: 15px; margin-top: 20px; }
         button { border: none; border-radius: 10px; cursor: pointer; font-weight: bold; transition: all 0.3s ease; }
-        #yesBtn { background-color: #28a745; color: white; padding: 15px 30px; font-size: 20px; z-index: 999; }
+        #yesBtn { background-color: #28a745; color: white; padding: 15px 30px; font-size: 20px; }
         #noBtn { background-color: #dc3545; color: white; padding: 10px 20px; font-size: 16px; }
         .hidden { display: none; }
     </style>
@@ -19,7 +20,9 @@
 <body>
 
     <div id="ask-section" class="container">
-        <img id="main-gif" src="image1.gif" alt="please">
+        <div class="gif-container">
+            <img id="main-gif" src="image1.gif" alt="[Loading image1.gif...]">
+        </div>
         <h1 id="questionText">Will you be my Valentine, <br>Mr. Takshil Ronak Shah? 🌹</h1>
         <div class="buttons">
             <button id="yesBtn">Yes</button>
@@ -28,7 +31,9 @@
     </div>
 
     <div id="success-section" class="container hidden">
-        <img id="main-gif-success" src="image4.gif" alt="success" style="width:220px; border-radius:10px;">
+        <div class="gif-container">
+            <img src="image4.gif" alt="[Loading image4.gif...]" style="width:220px; border-radius:10px;">
+        </div>
         <h1>Yay! It's a date, <br>Mr. Takshil Ronak Shah! 💖</h1>
     </div>
 
@@ -40,33 +45,27 @@
         const successSection = document.getElementById('success-section');
 
         const cheesyMessages = [
-            "No", "Are you sure?", "Please look at my eyes...", 
+            "No", "Are you sure?", "Plese look at my eyes...", 
             "I'm gonna cry...", "You're breaking my heart!", 
-            "Takshil, please don't be mean!", "I'll be so lonely...",
-            "Look at the sad penguin!!", "I'm drowning in tears!",
-            "Okay, now you're just teasing!", "JUST CLICK YES!",
-            "I'm not joking!!", "Pretty please?", "I'll give you a hug!",
-            "Last, last, LAST chance!"
+            "Takshil, please don't be mean!", "Look at the sad penguin!!", 
+            "I'm drowning in tears!", "JUST CLICK YES!", "Last chance!"
         ];
 
         let clickCount = 0;
 
         noBtn.addEventListener('click', () => {
             clickCount++;
-            
-            // 1. Change Text
             if (clickCount < cheesyMessages.length) {
                 noBtn.innerText = cheesyMessages[clickCount];
             } else {
                 noBtn.style.display = 'none';
             }
 
-            // 2. Change Images based on clicks
-            // Ensure these match your GitHub filenames exactly
-            if (clickCount === 4) mainGif.src = "image2.gif"; 
-            if (clickCount === 8) mainGif.src = "image3.png"; 
+            // Change images based on clicks
+            if (clickCount === 3) mainGif.src = "image2.gif"; 
+            if (clickCount === 6) mainGif.src = "image3.png"; 
 
-            // 3. Make Yes button grow MASSIVELY
+            // Yes button growth
             const currentSize = parseFloat(window.getComputedStyle(yesBtn).fontSize);
             yesBtn.style.fontSize = (currentSize + 15) + 'px';
             yesBtn.style.padding = (parseFloat(window.getComputedStyle(yesBtn).paddingTop) + 10) + 'px ' + 
