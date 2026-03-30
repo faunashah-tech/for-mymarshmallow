@@ -7,7 +7,7 @@
     <style>
         body { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; margin: 0; background-color: #fff0f3; font-family: 'Arial', sans-serif; text-align: center; overflow: hidden; }
         .container { background: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); width: 90%; max-width: 450px; }
-        #main-gif { width: 220px; height: 220px; object-fit: contain; margin-bottom: 20px; border-radius: 10px; }
+        #main-gif { width: 220px; height: 220px; object-fit: contain; margin-bottom: 20px; border-radius: 10px; display: block; margin-left: auto; margin-right: auto; }
         h1 { color: #ff4d6d; font-size: 22px; line-height: 1.4; min-height: 60px; }
         .buttons { display: flex; flex-direction: column; align-items: center; gap: 15px; margin-top: 20px; }
         button { border: none; border-radius: 10px; cursor: pointer; font-weight: bold; transition: all 0.3s ease; }
@@ -28,7 +28,7 @@
     </div>
 
     <div id="success-section" class="container hidden">
-        <img id="main-gif" src="image4.gif" alt="success">
+        <img id="main-gif-success" src="image4.gif" alt="success" style="width:220px; border-radius:10px;">
         <h1>Yay! It's a date, <br>Mr. Takshil Ronak Shah! 💖</h1>
     </div>
 
@@ -40,11 +40,13 @@
         const successSection = document.getElementById('success-section');
 
         const cheesyMessages = [
-            "No", "Are you sure?", "Plese look at my eyes...", 
+            "No", "Are you sure?", "Please look at my eyes...", 
             "I'm gonna cry...", "You're breaking my heart!", 
             "Takshil, please don't be mean!", "I'll be so lonely...",
             "Look at the sad penguin!!", "I'm drowning in tears!",
-            "Okay, now you're just teasing!", "JUST CLICK YES!"
+            "Okay, now you're just teasing!", "JUST CLICK YES!",
+            "I'm not joking!!", "Pretty please?", "I'll give you a hug!",
+            "Last, last, LAST chance!"
         ];
 
         let clickCount = 0;
@@ -59,11 +61,12 @@
                 noBtn.style.display = 'none';
             }
 
-            // 2. Change Images based on "sadness" level
-            if (clickCount === 3) mainGif.src = "image2.gif"; // Sad penguin
-            if (clickCount === 6) mainGif.src = "image3.png"; // Crying cat
+            // 2. Change Images based on clicks
+            // Ensure these match your GitHub filenames exactly
+            if (clickCount === 4) mainGif.src = "image2.gif"; 
+            if (clickCount === 8) mainGif.src = "image3.png"; 
 
-            // 3. Make Yes button grow
+            // 3. Make Yes button grow MASSIVELY
             const currentSize = parseFloat(window.getComputedStyle(yesBtn).fontSize);
             yesBtn.style.fontSize = (currentSize + 15) + 'px';
             yesBtn.style.padding = (parseFloat(window.getComputedStyle(yesBtn).paddingTop) + 10) + 'px ' + 
