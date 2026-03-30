@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Mr. Takshil Ronak Shah</title>
+    <style>
+        body { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; margin: 0; background-color: #fff0f3; font-family: 'Comic Sans MS', cursive, sans-serif; text-align: center; }
+        #main-gif { width: 200px; margin-bottom: 20px; border-radius: 15px; }
+        h1 { color: #ff4d6d; font-size: 24px; padding: 0 20px; }
+        .buttons { display: flex; gap: 20px; align-items: center; justify-content: center; margin-top: 20px; }
+        button { padding: 10px 25px; border: none; border-radius: 10px; cursor: pointer; font-weight: bold; transition: 0.2s; }
+        #yesBtn { background-color: #28a745; color: white; font-size: 18px; }
+        #noBtn { background-color: #dc3545; color: white; font-size: 18px; }
+    </style>
+</head>
+<body>
+    <div id="ask">
+        <img id="main-gif" src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHpueG55amZ6eW55eG55eG55eG55eG55eG55eG55eG55eG55JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1z/v49Oq7B988U6m/giphy.gif">
+        <h1>Will you be my Valentine, <br>Mr. Takshil Ronak Shah? 🌹</h1>
+        <div class="buttons">
+            <button id="yesBtn">Yes</button>
+            <button id="noBtn">No</button>
+        </div>
+    </div>
+    <div id="success" style="display:none;">
+        <img id="main-gif" src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHpueG55amZ6eW55eG55eG55eG55eG55eG55eG55eG55eG55JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1z/59pLp8TzXUfL2/giphy.gif">
+        <h1 style="color: #ff4d6d;">Ok yay!!! 💖</h1>
+    </div>
+    <script>
+        const yesBtn = document.getElementById('yesBtn');
+        const noBtn = document.getElementById('noBtn');
+        const noTexts = ["No", "Are you sure?", "Really sure??", "Last chance!", "Surely not?", "You're breaking my heart ;("];
+        let count = 0;
+        noBtn.addEventListener('click', () => {
+            count++;
+            if (count < noTexts.length) noBtn.innerText = noTexts[count];
+            else noBtn.style.display = 'none';
+            let size = 18 + (count * 15);
+            yesBtn.style.fontSize = size + 'px';
+            yesBtn.style.padding = (10 + count * 5) + 'px ' + (25 + count * 10) + 'px';
+        });
+        yesBtn.addEventListener('click', () => {
+            document.getElementById('ask').style.display = 'none';
+            document.getElementById('success').style.display = 'block';
+        });
+    </script>
+</body>
+</html>
